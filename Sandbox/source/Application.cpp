@@ -1,7 +1,21 @@
 #include "spdlog\spdlog.h"
-import Core;
+import Core.Application;
 
-int main(int argc, char* argv[])
+class SandBox : public GEngine::Application
 {
-    GEngine::Application app;
+public:
+    SandBox()
+    {
+        spdlog::info("Sandbox constructor");
+    }
+    ~SandBox()
+    {
+        spdlog::info("Sandbox destructor");
+    }
+};
+
+GEngine::Application* GEngine::CreateApplication()
+{
+    return new SandBox();
 }
+

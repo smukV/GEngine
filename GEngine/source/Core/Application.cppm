@@ -1,4 +1,4 @@
-export module Core;
+export module Core.Application;
 
 namespace GEngine {
     export class Application
@@ -7,4 +7,6 @@ namespace GEngine {
         Application();
         virtual ~Application();
     };
-}
+
+    export Application* CreateApplication();
+};

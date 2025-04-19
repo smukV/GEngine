@@ -2,7 +2,7 @@ module;
 
 #include <spdlog\spdlog.h>
 
-module Core;
+module Core.Application;
 
 GEngine::Application::Application()
 {
