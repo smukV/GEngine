@@ -38,18 +38,18 @@ project "GEngine"
     filter "system:windows"
         systemversion "latest"
 
-    filter "configurations: Debug"
-        defines "Debug"
-        symbols "on"
-
-    filter "configurations: Profile"
-        defines "Profile"
-        symbols "on"
-        optimize "on"
-
-    filter "configurations: Release"
-        defines "Release"
-        optimize "on"
+        filter "configurations:Debug"
+            defines {"Debug"}
+            symbols "on"
+    
+        filter "configurations:Profile"
+            defines {"Profile"}
+            symbols "on"
+            optimize "on"
+    
+        filter "configurations:Release"
+            defines {"Release"}
+            optimize "on"
 
 project "Sandbox"
         location "Sandbox"
@@ -85,15 +85,15 @@ project "Sandbox"
         filter "system:windows"
             systemversion "latest"
     
-        filter "configurations: Debug"
-            defines "Debug"
+        filter "configurations:Debug"
+            defines {"Debug"}
             symbols "on"
     
-        filter "configurations: Profile"
-            defines "Profile"
+        filter "configurations:Profile"
+            defines {"Profile"}
             symbols "on"
             optimize "on"
     
-        filter "configurations: Release"
-            defines "Release"
+        filter "configurations:Release"
+            defines {"Release"}
             optimize "on"
