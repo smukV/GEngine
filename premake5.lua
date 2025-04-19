@@ -1,6 +1,5 @@
 workspace "GEngine"
     architecture "x64"
-
     startproject "Sandbox"
     
     configurations
@@ -16,9 +15,10 @@ project "GEngine"
     location "GEngine"
     kind "StaticLib"
     language "C++"
+    cppdialect "C++20"
 
-    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+    targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
+    objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
 
     files
     {
@@ -29,9 +29,13 @@ project "GEngine"
         "%{prj.name}/source/**.cppm"
     }
 
+    includedirs
+    {
+        "%{prj.name}/3rd-party/spdlog/include"
+    }
+
+    buildoptions {"/utf-8"}
     filter "system:windows"
-        cppdialect "C++20"
-        staticruntime "on"
         systemversion "latest"
 
     filter "configurations: Debug"
@@ -51,9 +55,10 @@ project "Sandbox"
         location "Sandbox"
         kind "ConsoleApp"
         language "C++"
+        cppdialect "C++20"
     
-        targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-        objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+        targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
+        objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
     
         files
         {
@@ -64,14 +69,20 @@ project "Sandbox"
             "%{prj.name}/source/**.cppm"
         }
     
+        includedirs
+        {
+            "GEngine/source",
+            "GEngine/3rd-party/spdlog/include"
+        }
+
         links
         {
             "GEngine"
         }
-    
+
+        buildoptions {"/utf-8"}
+
         filter "system:windows"
-            cppdialect "C++20"
-            staticruntime "on"
             systemversion "latest"
     
         filter "configurations: Debug"
