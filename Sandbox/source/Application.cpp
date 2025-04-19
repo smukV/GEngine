@@ -1,6 +1,7 @@
-#include "../../GEngine/source/Test.hpp"
+#include "spdlog\spdlog.h"
+import Core;
 
-int main()
+int main(int argc, char* argv[])
 {
-    Test();
+    GEngine::Application app;
 }
