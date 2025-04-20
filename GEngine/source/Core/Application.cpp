@@ -1,15 +1,20 @@
 module;
 
-#include <spdlog\spdlog.h>
+#include "Log.h""
 
 module Core.Application;
 
-GEngine::Application::Application()
+namespace GEngine 
 {
-    spdlog::info("Application constructor");
-}
 
-GEngine::Application::~Application()
-{
-    spdlog::info("Application destructor");
+    Application::Application()
+    {
+        GEngine::Log::GetLogger()->info("Application constructor");
+    }
+
+    Application::~Application()
+    {
+        GEngine::Log::GetLogger()->info("Application destructor");
+    }
+
 }
