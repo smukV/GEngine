@@ -9,12 +9,12 @@ namespace GEngine
 
     Application::Application()
     {
-        GEngine::Log::GetLogger()->info("Application constructor");
+        GE_INFO("Application constructor");
     }
 
     Application::~Application()
     {
-        GEngine::Log::GetLogger()->info("Application destructor");
+        GE_INFO("Application destructor");
     }
 
 }

@@ -7,11 +7,11 @@ class SandBox : public GEngine::Application
 public:
     SandBox()
     {
-        GEngine::Log::GetLogger()->info("Sandbox constructor");
+        GE_INFO("Sandbox constructor");
     }
     ~SandBox()
     {
-        GEngine::Log::GetLogger()->info("Sandbox destructor");
+        GE_INFO("Sandbox destructor");
     }
 };
 
