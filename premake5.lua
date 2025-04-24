@@ -10,6 +10,9 @@ workspace "GEngine"
     }
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+IncludeDirs = {}
+IncludeDirs["GLFW"] = "GEngine/3rd-party/GLFW/include"
+
 
 project "GEngine"
     location "GEngine"
@@ -31,7 +34,18 @@ project "GEngine"
 
     includedirs
     {
-        "%{prj.name}/3rd-party/spdlog/include"
+        "%{prj.name}/3rd-party/spdlog/include",
+        "%{IncludeDirs.GLFW}"
+    }
+
+    libdirs
+    {
+        "%{prj.name}/3rd-party/GLFW/"
+    }
+
+    links
+    {
+        "glfw3"
     }
 
     buildoptions {"/utf-8"}
