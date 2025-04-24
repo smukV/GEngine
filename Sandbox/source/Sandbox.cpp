@@ -5,13 +5,14 @@ import Core.Application;
 class SandBox : public GEngine::Application
 {
 public:
-    SandBox()
+    SandBox() : Application("SandBox")
     {
-        GE_INFO("Sandbox constructor");
+        GE_APP_INFO("Sandbox constructor");
     }
+
     ~SandBox()
     {
-        GE_INFO("Sandbox destructor");
+        GE_APP_INFO("Sandbox destructor");
     }
 };
 

@@ -1,15 +1,16 @@
 module;
 
-#include "Log.h""
+#include "Log.h"
 
 module Core.Application;
 
 namespace GEngine 
 {
 
-    Application::Application()
+    Application::Application(std::string appName) : m_Name(appName)
     {
-        GE_INFO("Application constructor");
+        GE_INFO("Application {} constructor", m_Name);
+        GEngine::Log::InitApp(m_Name);
     }
 
     Application::~Application()
