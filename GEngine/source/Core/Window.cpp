@@ -6,7 +6,7 @@ module Core.Window;
 
 namespace GEngine
 {
-    bool Window::Init(unsigned int width, unsigned int height, std::string title)
+    bool Window::Init(unsigned int width, unsigned int height, std::string engineName, std::string appName)
     {
         if (!glfwInit())
         {
@@ -15,16 +15,26 @@ namespace GEngine
         }
 
         glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+        glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 
-        m_Window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
+        m_AppName = appName;
+        m_Window = glfwCreateWindow(width, height, m_AppName.c_str(), nullptr, nullptr);
         if (!m_Window)
         {
             GE_CRITICAL("Could not create window");
             glfwTerminate();
             return false;
         }
+        
+        m_Renderer = std::make_unique<VKRenderer>(m_Window);
+        if (!m_Renderer->Init(engineName, appName))
+        {
+            GE_CRITICAL("Could not init Vulkan renderer");
+            glfwTerminate();
+            return false;
+        }
 
-        GE_TRACE("Inited window {} with width {} height {}", title, width, height);
+        GE_TRACE("Inited window {} with width {} height {}", m_AppName, width, height);
         return true;
     }
 
@@ -37,9 +47,10 @@ namespace GEngine
         }
     }
 
-    void Window::Term()
+    void Window::Cleanup()
     {
         GE_TRACE("Terminating window");
+        m_Renderer->Cleanup();
         glfwDestroyWindow(m_Window);
         glfwTerminate();
     }

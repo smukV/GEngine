@@ -9,6 +9,8 @@ namespace GEngine {
         Application(std::string appName = "Untitled");
         virtual ~Application();
 
+        std::string GetName() { return m_Name; }
+
     private:
         std::string m_Name;
     };

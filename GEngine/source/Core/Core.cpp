@@ -10,10 +10,10 @@ int main(int argc, char* argv[])
     GEngine::Log::Init();
     auto app = GEngine::CreateApplication();
     GEngine::Window window;
-    if (window.Init(1280, 720, "GEngine"))
+    if (window.Init(1280, 720, "GEngine", app->GetName()))
     {
         window.Run();
-        window.Term();
+        window.Cleanup();
     }
     delete app;
 }
