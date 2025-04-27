@@ -46,7 +46,7 @@ project "GEngine"
 
     libdirs
     {
-        "%{IncludeDirs.GLFW}/",
+        "%{IncludeDirs.GLFW}/lib",
         "%{IncludeDirs.Vulkan}/lib/"
     }
 
