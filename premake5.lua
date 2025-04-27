@@ -10,8 +10,13 @@ workspace "GEngine"
     }
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+
+VULKAN_SDK_PATH = os.getenv("VULKAN_SDK")
+
 IncludeDirs = {}
-IncludeDirs["GLFW"] = "GEngine/3rd-party/GLFW/include"
+IncludeDirs["spdlog"] = "GEngine/3rd-party/spdlog"
+IncludeDirs["GLFW"] = "GEngine/3rd-party/GLFW"
+IncludeDirs["Vulkan"] = "%{VULKAN_SDK_PATH}"
 
 
 project "GEngine"
@@ -34,18 +39,21 @@ project "GEngine"
 
     includedirs
     {
-        "%{prj.name}/3rd-party/spdlog/include",
-        "%{IncludeDirs.GLFW}"
+        "%{IncludeDirs.spdlog}/include",
+        "%{IncludeDirs.GLFW}/include",
+        "%{IncludeDirs.Vulkan}/include"
     }
 
     libdirs
     {
-        "%{prj.name}/3rd-party/GLFW/"
+        "%{IncludeDirs.GLFW}/",
+        "%{IncludeDirs.Vulkan}/lib/"
     }
 
     links
     {
-        "glfw3"
+        "glfw3",
+        "vulkan-1"
     }
 
     buildoptions {"/utf-8"}
@@ -86,7 +94,7 @@ project "Sandbox"
         includedirs
         {
             "GEngine/source",
-            "GEngine/3rd-party/spdlog/include"
+            "%{IncludeDirs.spdlog}/include"
         }
 
         links
