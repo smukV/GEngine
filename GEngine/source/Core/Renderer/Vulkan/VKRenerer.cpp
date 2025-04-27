@@ -23,7 +23,7 @@ bool VKRenderer::Init(std::string engineName, std::string appName)
     const char** extensions = glfwGetRequiredInstanceExtensions(&extensionsCount);
     if (extensionsCount == 0)
     {
-        GE_CRITICAL("{} no Vulkan extensions found", __FUNCTION__);
+        GE_CRITICAL("no Vulkan extensions found");
         return false;
     }
 
@@ -38,7 +38,7 @@ bool VKRenderer::Init(std::string engineName, std::string appName)
     VkResult result = vkCreateInstance(&createInfo, nullptr, &m_Instance);
     if (result != VkResult::VK_SUCCESS)
     {
-        GE_CRITICAL("{} no Vulkan extensions found", __FUNCTION__);
+        GE_CRITICAL("no Vulkan extensions found");
         return false;
     }
     
@@ -46,7 +46,7 @@ bool VKRenderer::Init(std::string engineName, std::string appName)
     vkEnumeratePhysicalDevices(m_Instance, &physicalDevicesCount, nullptr);
     if (physicalDevicesCount == 0)
     {
-        GE_CRITICAL("{} No Vulkan capable GPU is found", __FUNCTION__);
+        GE_CRITICAL("No Vulkan capable GPU is found");
         return false;
     }
 
@@ -54,14 +54,14 @@ bool VKRenderer::Init(std::string engineName, std::string appName)
     result = vkEnumeratePhysicalDevices(m_Instance, &physicalDevicesCount, physDevices.data());
     if (result != VkResult::VK_SUCCESS)
     {
-        GE_CRITICAL("{} Enumerate physical devices", __FUNCTION__);
+        GE_CRITICAL("Enumerate physical devices");
         return false;
     }
 
     result = glfwCreateWindowSurface(m_Instance, m_Window, nullptr, &m_Surface);
     if (result != VkResult::VK_SUCCESS)
     {
-        GE_CRITICAL("{} Could not create Vulkan surface", __FUNCTION__);
+        GE_CRITICAL("Could not create Vulkan surface");
         return false;
     }
 
